@@ -22,7 +22,7 @@ const orderSchema = new Schema({
     lineDogs: [lineDogSchema],
     isPaid: { type: Boolean, default: false }
 }, {
-    timestamps: true
+    timestamps: true,
     toJSON: { virtuals: true }
 });
 

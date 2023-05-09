@@ -2,7 +2,10 @@ const Order = require('../../models/order');
 const Dog = require('../../models/dog');
 
 module.exports = {
-
+    cart,
+    addToCart,
+    setItemQtyInCart,
+    checkout
 };
 
 // Cart is the unpaid order for the user

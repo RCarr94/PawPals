@@ -18,12 +18,20 @@ async function createTask(req, res) {
 }
 
 // update task
+async function updateTask(req, res) {
+    let updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body);
+    res.json(updatedTask);
+}
 
 // delete task
-
+async function deleteTask(req, res) {
+    await Event.findByIdAndDelete(req.params.id);
+}
 // task details --- later
 
 module.exports = {
     getAllTasks,
-    createTask
+    createTask,
+    updateTask,
+    deleteTask
 };

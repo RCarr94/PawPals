@@ -1,64 +1,44 @@
 import { useState } from 'react';
-import { login } from '../../utilities/services/users'
-
-const defaultState = {
-    name: '',
-    password: '',
-    error: ''
-}
+import * as usersService from '../../utilities/users-service';
 
 export default function LoginForm({ setUser }) {
-    const [formData, setFormData] = useState(defaultState)
+  const [credentials, setCredentials] = useState({
+    email: '',
+    password: ''
+  });
+  const [error, setError] = useState('');
 
-    const { email, password, error } = formData;
+  function handleChange(evt) {
+    setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
+    setError('');
+  }
 
-    const handleSubmit = async (e) => {
-        // when we submit we basically just grab whatever we have in
-        // the state.
-        e.preventDefault();
-
-        try {
-            const {  password, email } = formData;
-            const data = {  password, email }
-
-            const user = await login(data)
-            // as soon as we get the decoded data from the creat account api call
-            // (derived fromt he jwt in local storage), we can update app.js to store
-            // user in state
-            setUser(user)
-        } catch (err) {
-            setFormData({
-                ...formData,
-                error: 'Log in Failed - Try again!'
-            })
-        }
+  async function handleSubmit(evt) {
+    // Prevent form from being submitted to the server
+    evt.preventDefault();
+    try {
+      // The promise returned by the signUp service method 
+      // will resolve to the user object included in the
+      // payload of the JSON Web Token (JWT)
+      const user = await usersService.login(credentials);
+      setUser(user);
+    } catch {
+      setError('Log In Failed - Try Again');
     }
+  }
 
-    function handleChange(evt) {
-        // Replace with new object and use a computed property
-        // to update the correct property
-        const newFormData = {
-            ...formData, // use the existing formData
-            [evt.target.name]: evt.target.value, // override whatever key with the current fieldd's value
-            error: '' // clear any old errors as soon as the user interacts with the form
-        };
-        setFormData(newFormData);
-    }
-
-    const disabled = !email || !password
-
-    return <div className='LoginForm'>
-        <div className="form-container">
-            <form onSubmit={handleSubmit} autoComplete="off">
-                <label htmlFor="email">Email</label>
-                <input type="text" name="email" id="email" value={email} onChange={handleChange} required />
-
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" id="password" value={password} onChange={handleChange} required />
-
-                <button type="submit" disabled={disabled}>Log In</button>
-            </form>
-        </div>
-        {error && <p className="error-message">&nbsp;{error}</p>}
+  return (
+    <div>
+      <div className="form-container">
+        <form autoComplete="off" onSubmit={handleSubmit}>
+          <label>Email</label>
+          <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
+          <label>Password</label>
+          <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
+          <button type="submit">Sign In</button>
+        </form>
+      </div>
+      <p className="error-message">&nbsp;{error}</p>
     </div>
+  );
 }

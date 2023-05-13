@@ -1,79 +1,60 @@
-import { useState } from 'react';
-import { signUp } from '../../utilities/services/users'
+import React, { Component } from 'react';
+import { signUp } from '../../utilities/users-service';
+import './SignUpForm.css';
 
-const defaultState = {
+export class SignUpForm extends Component {
+  state = {
     name: '',
     email: '',
     password: '',
     confirm: '',
-    error: ''
-}
+    error: '',
+  };
 
-export default function SignUpForm({ setUser }){
-    const [formData, setFormData] = useState(defaultState)
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+      error: '',
+    });
+  };
 
-    const { name, email, password, confirm, error } = formData;
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = { ...this.state };
+      delete formData.error;
+      delete formData.confirm;
 
-    const handleSubmit = async (e) =>{
-        // when we submit we basically just grab whatever we have in
-        // the state.
-        e.preventDefault();
-
-        try{
-            const { name, password, email } = formData;
-            const data = {name, password, email}
-
-            const user = await signUp(data)
-            // as soon as we get the decoded data from the creat account api call
-            // (derived fromt he jwt in local storage), we can update app.js to store
-            // user in state
-            setUser(user)
-        }catch (err) {
-            setFormData({
-                ...formData,
-                error: 'Sign up Failed - Try again!'
-            })
-        }
+      const user = await signUp(formData);
+      this.props.setUser(user);
+    } catch (err) {
+      this.setState({ error: 'Sign Up Failed- Try Again' });
     }
+  };
 
-
-    // const handleChange = (e) => {
-    //     const newFormData = { ...formData, [e.target.name]: e.target.value }
-    //     window.alert( JSON.stringify(newFormData ) )
-    //     setFormData(newFormData)
-    // }
-
-    function handleChange(evt) {
-        // Replace with new object and use a computed property
-        // to update the correct property
-        const newFormData = {
-            ...formData, // use the existing formData
-            [evt.target.name]: evt.target.value, // override whatever key with the current fieldd's value
-            error: '' // clear any old errors as soon as the user interacts with the form
-        };
-        setFormData(newFormData);
-    }
-
-    const disabled = (password !== confirm) || !name || !email || !password || !confirm
-
-    return <div className='SignUpForm'>
-            <div className="form-container">
-                <form onSubmit={handleSubmit} autoComplete="off">
-                    <label htmlFor="name">Name</label>
-                    <input type="text" name="name" id="name" value={name} onChange={handleChange} required/>
-
-                    <label htmlFor="email">Email</label>
-                    <input type="text" name="email" id="email" value={email} onChange={handleChange} required />
-
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" value={password} onChange={handleChange} required />
-
-                    <label htmlFor="confirm">Confirm Password</label>
-                    <input type="password" name="confirm" id="confirm" value={confirm} onChange={handleChange} required />
-
-                    <button type="submit" disabled={disabled}>Sign up</button>
-                </form>
-            </div>
-            {error && <p className="error-message">&nbsp;{error}</p>}
+  render() {
+    const disable = this.state.password !== this.state.confirm;
+    return (
+      <div>
+        <div className="form-container">
+          <form autoComplete="off" onSubmit={this.handleSubmit} className="signup-form">
+            <label>Name</label>
+            <input type="text" name="name" value={this.state.name} onChange={this.handleChange} required />
+            <label>Email</label>
+            <input type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
+            <label>Password</label>
+            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
+            <label>Confirm</label>
+            <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
+            <button type="submit" disabled={disable} className="signup-btn">
+              Register
+            </button>
+          </form>
         </div>
+        {this.state.error ? <p className="error-message">&nbsp;{this.state.error}</p> : <span></span>}
+      </div>
+    );
+  }
 }
+
+export default SignUpForm;

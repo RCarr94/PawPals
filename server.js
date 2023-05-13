@@ -3,37 +3,31 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 
-// Always require and configure neat the top
 require('dotenv').config();
-// Connect to the database (after the dotenv)
 require('./config/database');
-
-const userRouter = require('./routes/api/users')
+const port = process.env.PORT || 3001;
 
 const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
-
-if( process.env.NODE_ENV === 'production'){
+// Configure both serve-favicon & static middleware
+// to serve from the production 'build' folder
+if (process.env.NODE_ENV === 'production') {
   app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
   app.use(express.static(path.join(__dirname, 'build')));
 }
-
-// Check for a token on every request
 app.use(require('./config/checkToken'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/tasks', require('./routes/api/tasks'));
 
-// API routes here
-app.use('/api/users', userRouter)
+const ensureLoggedIn = require('./config/ensureLoggedIn');
 
-// "Catch all" route
-app.get('/*', function(req, res) {
+app.get('/*', function (req, res) {
+  // currentdirectory/build/index.html
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-const port = process.env.PORT || 3001;
-
-app.listen(port, function() {
+app.listen(port, function () {
   console.log(`Express app running on port ${port}`);
 });
-

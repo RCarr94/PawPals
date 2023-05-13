@@ -1,0 +1,212 @@
+.user-tasks-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.user-tasks-page-header {
+  font-size: 20px;
+  color: #1c626b;
+  margin-top: 3%;
+}
+
+.lists-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+.created-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.created-tasks-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.created-task-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-items: stretch;
+  border: 2px solid #52f0fc;
+  padding: 10px 20px 20px 20px;
+  margin: 20px;
+  border-radius: 10px;
+  color: #1c626b;
+  background-color: white;
+  width: 77%;
+  height: 260px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex-flow: column wrap;
+  padding-top: 0px;
+  margin-left: 10px;
+  padding: 0px 15px 0px 15px;
+}
+
+.property {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  justify-content: space-between;
+  justify-self: flex-end;
+}
+
+.property-details {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  justify-content: space-between;
+  justify-items: space-between;
+  align-items: center;
+}
+
+.bold-key {
+  margin: 0px;
+  font-weight: bold;
+}
+
+.value {
+  display: flex;
+  flex-direction: column;
+}
+
+.generate-task-links {
+  color: #1c626b;
+  text-decoration: none;
+}
+
+.generate-task-links:hover {
+  color: #52f0fc;
+}
+
+@media only screen and (max-width: 450px) {
+  .user-tasks-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .user-tasks-page-header {
+    margin-top: 5%;
+    font-family: "Shadows Into Light";
+    font-size: 20px;
+    color: #1c626b;
+  }
+
+  .lists-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .created-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    margin-left: 25px;
+  }
+
+  .created-tasks-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .created-task-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    justify-items: center;
+    border: 2px solid #52f0fc;
+    padding: 10px 20px 20px 20px;
+    margin: 20px;
+    border-radius: 10px;
+    color: #1c626b;
+    background-color: #52f0fc;
+    width: 77%;
+    height: 260px;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+    padding: 0px 0px 0px 0px;
+  }
+
+  .property {
+    display: flex;
+    flex-direction: row;
+    margin: 0px 0px 0px 15px;
+    padding: 0px;
+    max-width: 80%;
+    justify-content: space-between;
+    justify-items: space-between;
+    flex-wrap: row wrap;
+    height: 20px;
+  }
+  .property-details {
+    display: flex;
+    flex-direction: row;
+    margin: 0px 0px 0px 15px;
+    padding: 0px;
+    max-width: 80%;
+    justify-content: space-between;
+    justify-items: space-between;
+    flex-wrap: row wrap;
+    height: 40px;
+  }
+
+  .bold {
+    font-size: 22px;
+  }
+
+  .bold-key {
+    display: flex;
+    flex-direction: row;
+    justify-self: flex-start;
+    align-self: flex-start;
+    margin: 0px;
+    padding: 0px;
+    font-weight: bold;
+    width: 45%;
+  }
+
+  .value {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .generate-task-links {
+    color: #1c626b;
+    text-decoration: none;
+  }
+
+  .generate-task-links:hover {
+    color: #52f0fc;
+  }
+
+}

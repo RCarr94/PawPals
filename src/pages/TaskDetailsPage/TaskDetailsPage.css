@@ -1,0 +1,116 @@
+
+.details-page-container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1%;
+  min-height: 100vh;
+}
+
+.details-card-container {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  border: 2px solid #52f0fc;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  color: #1c626b;
+}
+
+.details-card-container > h2 {
+  margin: 15px;
+}
+
+.details-card-container > p {
+  margin: 7.5px;
+}
+
+.edit-delete-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.edit-btn {
+  padding: 5px;
+  margin: 5px 5px 0px 5px;
+  border: 1px solid #52f0fc;
+  background-color: white;
+  border-radius: 10px;
+  color: #52f0fc;
+  cursor: pointer;
+}
+
+.delete-btn {
+  padding: 5px;
+  margin: 5px 5px 0px 5px;
+  border: 1px solid #52f0fc;
+  background-color: white;
+  border-radius: 10px;
+  color: #52f0fc;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 450px) {
+  .details-page-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+  }
+
+  .details-card-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    border: 2px solid #52f0fc;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #1c626b;
+  }
+
+  .details-card-container > h2 {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    font-size: 22px;
+  }
+
+  .details-card-container > p {
+    margin: 5px;
+  }
+
+  .edit-delete-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    margin-bottom: 0px;
+  }
+
+  .edit-btn {
+    padding: 5px;
+    margin: 0px 5px 0px 0px;
+    border: 1px solid #52f0fc;
+    background-color: white;
+    border-radius: 10px;
+    color: #52f0fc;
+    cursor: pointer;
+  }
+
+  .delete-btn {
+    padding: 5px;
+    margin: 0px 5px 0px 0px;
+    border: 1px solid #52f0fc;
+    background-color: white;
+    border-radius: 10px;
+    color: #52f0fc;
+    cursor: pointer;
+  }
+}

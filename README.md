@@ -29,19 +29,25 @@ Login
 <img src="public/login-screen.png" height="250">
 <br>
 Register Screen
+<br>
 <img src="public/register-screen.png" height="250">
 <br>
 All Tasks
+<br>
 <img src="public/all-tasks.png" height="250">
 <br>
 Create a Task
+<br>
 <img src="public/create-task.png" height="250">
 <br>
 Create Task Form
+<br>
 <img src="public/create-task-form.png" height="250">
 <br>
 My Tasks
+<br>
 <img src="public/my-created-tasks.png" height="250">
+<br>
 <br>
 
 ## Icebox Items

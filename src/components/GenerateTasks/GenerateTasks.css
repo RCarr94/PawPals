@@ -1,0 +1,69 @@
+.find-tasks-list {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin-top: 20px;
+}
+
+.find-task-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid #52f0fc;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  color: #1c626b;
+}
+
+.generate-tasks-links {
+  color: #1c626b;
+  text-decoration: none;
+}
+
+.generate-events-links:hover {
+  color: #52f0fc;
+}
+
+.find-task-card > p {
+  margin: 10px;
+}
+
+.find-task-card > h2 {
+  margin: 15px;
+}
+
+.bold-header {
+  font-weight: bold;
+}
+
+
+
+@media only screen and (max-width: 450px) {
+  .find-tasks-list {
+    width: 95%;
+    margin-top: 5px;
+  }
+
+  .find-task-card {
+    padding: 10px;
+    margin: 15px;
+    border-radius: 10px;
+    color: #1c626b;
+  }
+
+  .find-task-card > p {
+    margin: 5px;
+    font-size: 14px;
+  }
+
+  .generate-tasks-links > h2 {
+    margin: 5px;
+    font-size: 18px;
+  }
+
+  .bold-header {
+    margin-right: 2px;
+  }
+
+}

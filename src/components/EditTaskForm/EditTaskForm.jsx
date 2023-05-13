@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './TaskForm.css';
+import './EditTaskForm.css';
 import * as tasksAPI from '../../utilities/tasks-api';
 
-export default function TaskForm({ selectedCategory }) {
+export default function EditTaskForm({ selectedCategory, task }) {
   const [error, setError] = useState('');
   const [formData, setFormData] = useState({
-    name: '',
+    name: task.name,
     date: new Date(),
-    details: '',
+    details: task.details,
     category: selectedCategory,
   });
 
@@ -26,7 +26,7 @@ export default function TaskForm({ selectedCategory }) {
   async function handleSubmitForm(evt) {
     evt.preventDefault();
     try {
-      let task = await tasksAPI.createAddTask(formData);
+      await tasksAPI.updateTask(formData, task._id);
       setFormData(formData);
       navigate('/');
     } catch (err) {
@@ -36,27 +36,21 @@ export default function TaskForm({ selectedCategory }) {
 
   return (
     <>
-      <div className="select-tasks-header">
-        <h1>{selectedCategory}</h1>
+      <div className="edit-header">
+        <h1>Edit Task </h1>
+        <h2>
+          <span className="edit-header-name">{task.name}</span>
+        </h2>
       </div>
-
-      <div className="task-form-container">
+      <div className="edit-form-container">
         <form onSubmit={handleSubmitForm} className="task-form">
           <label>Task</label>
           <input type="text" value={formData.name} name="name" required onChange={handleChangeForm} />
-          <label>Date</label>
-          <input type="datetime-local" value={formData.date} name="date" required onChange={handleChangeForm} className="date-and-time-input" />
+          <label>Due Date:</label>
+          <input type="datetime-local" value={formData.date} name="date" required onChange={handleChangeForm} />
           <label>Details</label>
-          <input
-            type="text"
-            value={formData.details}
-            name="details"
-            required
-            onChange={handleChangeForm}
-            placeholder="Task details..."
-            className="details-input"
-          />
-          <button type="submit">Create Task</button>
+          <input type="text" value={formData.details} name="details" required onChange={handleChangeForm} className="details-input" />
+          <button type="submit">Update Task</button>
         </form>
       </div>
     </>

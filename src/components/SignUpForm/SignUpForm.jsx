@@ -1,48 +1,43 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { signUp } from '../../utilities/users-service';
+import './SignUpForm.css';
 
-export default class SignUpForm extends Component {
+export class SignUpForm extends Component {
   state = {
     name: '',
     email: '',
     password: '',
     confirm: '',
-    error: ''
+    error: '',
   };
 
-  handleSubmit = async (evt) => {
-    evt.preventDefault();
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+      error: '',
+    });
+  };
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       const formData = { ...this.state };
-      delete formData.confirm;
       delete formData.error;
-      // The promise returned by the signUp service method
-      // will resolve to the user object included in the
-      // payload of the JSON Web Token (JWT)
-      const user = await signUp(formData);
-      // Update user state with user
-      this.props.setUser(user);
-    } catch {
-      // Invalid signup
-      this.setState({
-        error: 'Sign Up Failed - Try Again'
-      });
-    }
-  }
+      delete formData.confirm;
 
-  handleChange = (evt) => {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-      error: ''
-    });
-  }
+      const user = await signUp(formData);
+      this.props.setUser(user);
+    } catch (err) {
+      this.setState({ error: 'Sign Up Failed- Try Again' });
+    }
+  };
 
   render() {
     const disable = this.state.password !== this.state.confirm;
     return (
       <div>
         <div className="form-container">
-          <form autoComplete="off" onSubmit={this.handleSubmit}>
+          <form autoComplete="off" onSubmit={this.handleSubmit} className="signup-form">
             <label>Name</label>
             <input type="text" name="name" value={this.state.name} onChange={this.handleChange} required />
             <label>Email</label>
@@ -51,11 +46,15 @@ export default class SignUpForm extends Component {
             <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
             <label>Confirm</label>
             <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
-            <button type="submit" disabled={disable}>SIGN UP</button>
+            <button type="submit" disabled={disable} className="signup-btn">
+              SIGN UP
+            </button>
           </form>
         </div>
-        <p className="error-message">&nbsp;{this.state.error}</p>
+        {this.state.error ? <p className="error-message">&nbsp;{this.state.error}</p> : <span></span>}
       </div>
     );
   }
 }
+
+export default SignUpForm;

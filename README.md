@@ -26,27 +26,27 @@ PawPals is a task-based app that helps users stay on top of their household, pet
 <br>
 Login
 <br>
-<img src="public/login-screen.png" height="250">
+<img src="public/login-screen.png" height="300">
 <br>
 Register Screen
 <br>
-<img src="public/register-screen.png" height="250">
+<img src="public/register-screen.png" height="300">
 <br>
 All Tasks
 <br>
-<img src="public/all-tasks.png" height="250">
+<img src="public/all-tasks.png" height="300">
 <br>
 Create a Task
 <br>
-<img src="public/create-task.png" height="250">
+<img src="public/create-task.png" height="300">
 <br>
 Create Task Form
 <br>
-<img src="public/create-task-form.png" height="250">
+<img src="public/create-task-form.png" height="300">
 <br>
 My Tasks
 <br>
-<img src="public/my-created-tasks.png" height="250">
+<img src="public/my-created-tasks.png" height="300">
 <br>
 <br>
 

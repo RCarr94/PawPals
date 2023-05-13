@@ -10,15 +10,15 @@ export default function AuthPage({ setUser }) {
     <>
       <div className="auth-page-container">
         <div className="intro-paragraph">
-          <p>
+          <h1>
             PawPals
-          </p>
-          <p>Sign in or Sign Up</p>
+          </h1>
+          <p>Log in or Register</p>
         </div>
         <div className="auth-form-container">{showLogin ? <LoginForm setUser={setUser} /> : <SignUpForm setUser={setUser} />}</div>
         <p>Or</p>
         <div className="change-sign-in-btn">
-          <h3 onClick={() => setShowLogin(!showLogin)}>{showLogin ? 'SIGN UP' : 'SIGN IN'}</h3>
+          <h3 onClick={() => setShowLogin(!showLogin)}>{showLogin ? 'Register' : 'Log In'}</h3>
         </div>
       </div>
     </>

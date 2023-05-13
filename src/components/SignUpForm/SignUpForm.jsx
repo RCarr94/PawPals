@@ -47,7 +47,7 @@ export class SignUpForm extends Component {
             <label>Confirm</label>
             <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
             <button type="submit" disabled={disable} className="signup-btn">
-              SIGN UP
+              Register
             </button>
           </form>
         </div>
